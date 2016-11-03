@@ -2,6 +2,7 @@ package iview.wsienski.rxtrip;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -33,6 +34,12 @@ public class MainActivity extends AppCompatActivity {
         bindSubstrictionToKey(clickObservable, compositeSubscription, aVoid -> Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show());
 
         bindEditText(textView, editText);
+
+        simpleCall();
+    }
+
+    private void simpleCall() {
+        Observable.just("Hello, world.").subscribe(s -> Log.d("simpleCall", s));
     }
 
     private void bindSubstrictionToKey(Observable<Void> clickObservable, CompositeSubscription compositeSubscription, Action1<Void> click) {
