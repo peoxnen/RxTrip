@@ -37,10 +37,31 @@ public class MainActivity extends AppCompatActivity {
 
         simpleCall();
         mapOperator();
+        mapOperator2();
+        flatMapOpertor();
+        filterOperator();
+    }
+
+    private void filterOperator() {
+      Observable.just("one","two","three")
+                .filter(t -> t.contains("o"))
+              .subscribe(s -> Log.d("filterOperator", s));
+    }
+
+    private void flatMapOpertor() {
+        Observable.just("one")
+                .flatMap(s -> Observable.from(s.split("")))
+                .map(s -> "char "+s)
+                .skip(1)
+                .subscribe(s -> Log.d("flatMapOpertor", s));
     }
 
     private void mapOperator() {
         Observable.just("Hello, world!").map(s -> s + " Hello Witek").subscribe(s -> Log.d("mapOperator", s));
+    }
+
+    private void mapOperator2() {
+        Observable.just("Hello, world!").map(s -> s.length()).subscribe(i -> Log.d("mapOperator", "length "+i));
     }
 
     private void simpleCall() {
