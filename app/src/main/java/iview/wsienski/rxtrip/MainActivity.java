@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
         bindEditText(textView, editText);
 
         simpleCall();
+        mapOperator();
+    }
+
+    private void mapOperator() {
+        Observable.just("Hello, world!").map(s -> s + " Hello Witek").subscribe(s -> Log.d("mapOperator", s));
     }
 
     private void simpleCall() {
